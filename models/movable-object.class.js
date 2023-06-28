@@ -12,7 +12,6 @@ class MovableObject {
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
-
     }
 
     /**
@@ -40,5 +39,13 @@ class MovableObject {
 
     moveDown() {
 
+    }
+    animateSwimming(imageArray) {
+        setInterval(() => {
+            let i = this.currentImage % imageArray.length;   // let i = 0 % 6; => 0, Rest 0
+            let path = imageArray[i];
+            this.img = this.imageCahce[path];
+            this.currentImage++;
+        }, 150);
     }
 }

@@ -1,7 +1,13 @@
 class World {
     character = new Character();
     enemies = [
-    new Fish()
+        new GreenFish(),
+        new RedFish(),
+        new TransitonGreenFish(),
+        new GreenFish(),
+        new RedFish,
+        new GreenFish(),
+        new RedFish()
     ];
 
     background = [
@@ -10,7 +16,7 @@ class World {
         new Background('img/3. Background/Layers/3.Fondo 1/L.png'),             //vorderes
         new Background('img/3. Background/Legacy/Layers/2. Floor/L3.png'),      //Meeresgrund
         new Background('img/3. Background/Layers/1. Light/2.png')               //Sonneneinstrahlung
-    ]
+    ];
     canvas;
     ctx;
     constructor(canvas) {
