@@ -1,11 +1,9 @@
 class World {
     character = new Character();
     enemies = [
-        new Fish('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png'),
-        new Fish('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim1.png'),
-        new Fish('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png'),
-
+    new Fish()
     ];
+
     background = [
         new Background('img/3. Background/Layers/5. Water/L.png'),              //Wasser
         new Background('img/3. Background/Legacy/Layers/4.Fondo 2/L3.png'),     //hinteres

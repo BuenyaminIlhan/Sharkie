@@ -6,11 +6,13 @@ class MovableObject {
     height = 100;
     imageCahce = {};
     currentImage = 0;
+    speed = 0.25
 
 
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
+
     }
 
     /**
@@ -27,7 +29,9 @@ class MovableObject {
     moveRight() {
     }
     moveLeft() {
-
+        setInterval(() => {
+            this.x -= this.speed
+        }, 1000 / 120) // dies ergibt 60FPS
     }
 
     moveUp() {
