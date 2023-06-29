@@ -1,36 +1,33 @@
 class World {
     character = new Character();
-    enemies = [
-        new GreenFish(),
-        new RedFish(),
-        new TransitonGreenFish(),
-        new GreenFish(),
-        new RedFish,
-        new GreenFish(),
-        new RedFish()
-    ];
-
-    background = [
-        new Background('img/3. Background/Layers/5. Water/L.png'),              //Wasser
-        new Background('img/3. Background/Legacy/Layers/4.Fondo 2/L3.png'),     //hinteres
-        new Background('img/3. Background/Layers/3.Fondo 1/L.png'),             //vorderes
-        new Background('img/3. Background/Legacy/Layers/2. Floor/L3.png'),      //Meeresgrund
-        new Background('img/3. Background/Layers/1. Light/2.png')               //Sonneneinstrahlung
-    ];
+    level = level1
+    enemies = level1.enemies;
+    background = level1.background;
     canvas;
     ctx;
-    constructor(canvas) {
+    KEYBOARD;
+    camera_x = 0;
+    constructor(canvas, KEYBOARD) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas
+        this.KEYBOARD = KEYBOARD
         this.draw();
+        this.setWorld();
     }
 
+    setWorld() {
+        this.character.world = this
+    }
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-        this.addObjectsToMap(this.background);
-        this.addObjectsToMap(this.enemies);
+        this.ctx.translate(this.camera_x, 0);
+
+        this.addObjectsToMap(this.level.background);
+
+        this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
+        this.ctx.translate(-this.camera_x, 0);
 
 
         // Draw() wird immer wieder aufgerufen
@@ -47,7 +44,17 @@ class World {
     }
 
     addToMap(mo) {
+        if (mo.otherDirection) {
+            this.ctx.save();
+            this.ctx.translate(mo.width, 0);
+            this.ctx.scale(-1, 1)
+            mo.x = mo.x * -1
+        }
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height)
+        if (mo.otherDirection) {
+            mo.x = mo.x * -1
+            this.ctx.restore();
+        }
 
     }
 }

@@ -8,16 +8,6 @@ class Fish extends MovableObject {
 
     constructor(greet) {
         super();
-        //this.greet = greet;
-        console.log(greet)
-        //this.ausgabe(greet)
-        //super(imagePath)
-        //loadImage(imagePath)
-        //this.loadImages(imagePath)
-        //this.animate();
-        //this.animateSwimming();
-        //this.speed = 0.15 + Math.random() * 0.7
-
     }
     animate() {
         this.moveLeft()

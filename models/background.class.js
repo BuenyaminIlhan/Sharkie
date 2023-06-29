@@ -1,18 +1,18 @@
 class Background extends MovableObject {
+    x = 0;
+    y = 0;
 
-
-    constructor(imagePath) {
+    constructor(imagePath, x, y) {
         super().loadImage(imagePath)
         this.width = 720
         this.height = 480
-        this.x = 0
-        this.y = 0
-        //this.animate();
+        this.x = x
+        this.y = y        //this.animate();
     }
 
     animate() {
-        setInterval( () => {
+        setInterval(() => {
             this.x -= 0.15
-        },1000 / 120) // dies ergibt 60FPS
+        }, 1000 / 120) // dies ergibt 120FPS
     }
 }

@@ -2,7 +2,6 @@ class GreenFish extends MovableObject {
 
     x = 200 + Math.random() * 500
     y = 0 + Math.random() * 400
-    greet = 'hallo';
 
     
     SWIMMING_GREEN_FISH = [

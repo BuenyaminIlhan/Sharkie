@@ -6,7 +6,8 @@ class MovableObject {
     height = 100;
     imageCahce = {};
     currentImage = 0;
-    speed = 0.25
+    speed = 0.15;
+    otherDirection = false;
 
 
     loadImage(path) {
@@ -18,12 +19,19 @@ class MovableObject {
      * 
      * @param {Array} arr - ['img/image1.png','img/image2.png', ... ]
      */
-    loadImages(arr) {                           
+    loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();                     // ein Image Objekt wird erstellt
             img.src = path                             // Bild wird zum Objekt hinzugefügt
             this.imageCahce[path] = img;              // wird zum JSON hinzugefügt
         });
+    }
+    playAnimation(images) {
+        this.x += this.speed
+        let i = this.currentImage % images.length;   // let i = 0 % 6; => 0, Rest 0
+        let path = images[i];
+        this.img = this.imageCahce[path];
+        this.currentImage++;
     }
     moveRight() {
     }
@@ -34,7 +42,9 @@ class MovableObject {
     }
 
     moveUp() {
-
+        setInterval(() => {
+            this.y -= this.speed
+        }, 1000 / 120) // dies ergibt 120FPS
     }
 
     moveDown() {
