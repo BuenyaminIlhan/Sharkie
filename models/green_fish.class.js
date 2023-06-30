@@ -18,6 +18,7 @@ class GreenFish extends MovableObject {
         this.animate();
         this.animateSwimming(this.SWIMMING_GREEN_FISH);
         this.speed = 0.15 + Math.random() * 0.7
+        
     }
     animate() {
         this.moveLeft()
