@@ -1,7 +1,7 @@
 class World {
-    character = new Character();
     level = level1
     enemies = level1.enemies;
+    character = new Character();
     background = level1.background;
     canvas;
     ctx;
@@ -13,11 +13,23 @@ class World {
         this.KEYBOARD = KEYBOARD
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     }
 
     setWorld() {
         this.character.world = this
     }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    console.log('Collision with Character ', enemy)
+                }
+            });
+        }, 1000);
+    }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
@@ -45,20 +57,25 @@ class World {
 
     addToMap(mo) {
         if (mo.otherDirection) {
-            this.ctx.save();
-            this.ctx.translate(mo.width, 0);
-            this.ctx.scale(-1, 1)
-            mo.x = mo.x * -1
+            this.flipimage(mo);
         }
         mo.draw(this.ctx);
-        this.ctx.beginPath();
-        this.ctx.lineWidth = '1';
-        this.ctx.strokeStyle = 'blue';
-        this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
-        this.ctx.stroke();
+        mo.drawFrame(this.ctx)
+
+
         if (mo.otherDirection) {
-            mo.x = mo.x * -1
-            this.ctx.restore();
+            this.flipimageBack(mo);
         }
+    }
+    flipimage(mo) {
+        this.ctx.save();
+        this.ctx.translate(mo.width, 0);
+        this.ctx.scale(-1, 1)
+        mo.x = mo.x * -1
+    }
+
+    flipimageBack(mo) {
+        mo.x = mo.x * -1
+        this.ctx.restore();
     }
 }

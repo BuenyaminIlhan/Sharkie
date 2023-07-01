@@ -22,9 +22,9 @@ class MovableObject {
         }, 1000 / 120)
     }
 
-isAboveUp() {
-    return this.y < 550
-}
+    isAboveUp() {
+        return this.y < 550
+    }
 
     loadImage(path) {
         this.img = new Image();
@@ -33,6 +33,36 @@ isAboveUp() {
 
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+    }
+    drawFrame(ctx) {
+        if (this instanceof Character ||
+            this instanceof Fish ||
+            this instanceof BubbleFish ||
+            this instanceof GreenFish ||
+            this instanceof GreenFish ||
+            this instanceof RedFish ||
+            this instanceof TransitonGreenFish ||
+            this instanceof JellyFishLila ||
+            this instanceof EndBoss) {
+            ctx.beginPath();
+            ctx.lineWidth = '1';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
+
+    // character.isColliding(greenFish)
+    // Bessere Formel zur Kollisionsberechnung (Genauer)
+    /*
+    isColliding(obj) {
+        return (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) &&
+            (this.Y + this.offsetY + this.height) >= obj.Y &&
+            (this.Y + this.offsetY) <= (obj.Y + obj.height) &&
+            obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+    }*/
+    isColliding(mo) {
+        return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x + mo.width && this.y < mo.y + mo.height;
     }
 
     /**
@@ -47,7 +77,7 @@ isAboveUp() {
         });
     }
     playAnimation(images) {
-        
+
         let i = this.currentImage % images.length;   // let i = 0 % 6; => 0, Rest 0
         let path = images[i];
         this.img = this.imageCahce[path];

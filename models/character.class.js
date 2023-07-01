@@ -55,9 +55,9 @@ class Character extends MovableObject {
         }, 2000 / 120)
     }
     animate() {
-
+        //this.swimming_sound.play()
         setInterval(() => {
-            this.swimming_sound.play()
+      
             if (this.world.KEYBOARD.RIGHT && this.x < this.world.level.level_end_X) {
                 this.moveRight();
             }
@@ -72,6 +72,7 @@ class Character extends MovableObject {
             }
             this.world.camera_x = -this.x + 100
         }, 1000 / 120)      //entspricht 120FPS
+        
         setInterval(() => {
             if (this.world.KEYBOARD.RIGHT || this.world.KEYBOARD.LEFT || this.world.KEYBOARD.UP || this.world.KEYBOARD.DOWN) {
                 this.playAnimation(this.SWIMMING)
