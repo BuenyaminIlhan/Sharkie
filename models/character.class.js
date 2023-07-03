@@ -4,6 +4,7 @@ class Character extends MovableObject {
     height = 200
     y = 230
     speed = 2
+    offset = -40;
     SWIMMING = [
         'img/1.Sharkie/3.Swim/1.png',
         'img/1.Sharkie/3.Swim/2.png',
@@ -68,8 +69,6 @@ class Character extends MovableObject {
         this.loadImages(this.DEAD);
         this.loadImages(this.HURT)
         this.animate();
-
-
     }
 
     animateIdle() {

@@ -19,6 +19,8 @@ body {
 h1 {
     font-size: 60px;
     color: white;
+    letter-spacing: 4px;
+    text-shadow: 4px 4px 1px rgba(0,0,0,0.5);
 }
 
 canvas {
@@ -43,4 +45,6 @@ button {
 button:hover {
     scale: 1.1;
     background-color: #36bad493;
+    letter-spacing: 3px;
+    text-shadow: 4px 4px 1px rgba(0,0,0,0.5);
 }

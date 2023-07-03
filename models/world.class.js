@@ -9,6 +9,7 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar()
     throwableObject = [];
+
     constructor(canvas, KEYBOARD) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas
@@ -31,20 +32,23 @@ class World {
         }, 200);
     }
     attackSound = new Audio('audio/attack_sound.mp3');
+    hurtSound = new Audio('audio/character_hurt.mp3');
     checkTrhowObject() {
         this.attackSound.pause();
         if (this.KEYBOARD.SPACE) {
-            let bottle = new ThrowableObject(this.character.x +120, this.character.y +110);
+            let bottle = new ThrowableObject(this.character.x + 120, this.character.y + 110);
             this.throwableObject.push(bottle)
             this.attackSound.play();
         }
     }
 
     checkCollisions() {
+        this.hurtSound.pause();
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBar.setPrecentage(this.character.energy)
+                //this.hurtSound.play();
             }
         });
     }
