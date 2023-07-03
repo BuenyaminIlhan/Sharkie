@@ -7,38 +7,54 @@ function init() {
     world = new World(canvas, KEYBOARD)
 }
 
+function fullscreen() {
+    canvas.requestFullscreen()
+}
+
 window.addEventListener('keydown', (e) => {
-    if (e.key == 'ArrowUp') {
+    if (e.code == 'ArrowUp') {
         KEYBOARD.UP = true;
     }
-    if (e.key == 'ArrowDown') {
+    if (e.code == 'ArrowDown') {
         KEYBOARD.DOWN = true;
     }
-    if (e.key == 'ArrowRight') {
+    if (e.code == 'ArrowRight') {
         KEYBOARD.RIGHT = true;
     }
-    if (e.key == 'ArrowLeft') {
+    if (e.code == 'ArrowLeft') {
         KEYBOARD.LEFT = true;
     }
-    if (e.key == 'Space') {
+    if (e.code == 'Space') {
         KEYBOARD.SPACE = true;
+    }
+    if (e.code == 'KeyD') {
+        KEYBOARD.D = true
+    }
+    if (e.code == 'KeyF') {
+        KEYBOARD.F = true
     }
 });
 
 window.addEventListener('keyup', (e) => {
-    if (e.key == 'ArrowUp') {
+    if (e.code == 'ArrowUp') {
         KEYBOARD.UP = false;
     }
-    if (e.key == 'ArrowDown') {
+    if (e.code == 'ArrowDown') {
         KEYBOARD.DOWN = false;
     }
-    if (e.key == 'ArrowRight') {
+    if (e.code == 'ArrowRight') {
         KEYBOARD.RIGHT = false;
     }
-    if (e.key == 'ArrowLeft') {
+    if (e.code == 'ArrowLeft') {
         KEYBOARD.LEFT = false;
     }
-    if (e.key == 'Space') {
+    if (e.code == 'Space') {
         KEYBOARD.SPACE = false;
+    }
+    if (e.code == 'KeyD') {
+        KEYBOARD.D = false
+    }
+    if (e.code == 'KeyF') {
+        KEYBOARD.F = false
     }
 });

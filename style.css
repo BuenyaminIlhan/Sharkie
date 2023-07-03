@@ -1,12 +1,46 @@
+@font-face {
+    font-family: 'Shadows Into Light', cursive;
+    src: url(/fonts/Shadows_Into_Light/ShadowsIntoLight-Regular.ttf);
+}
+
 body {
+    font-family: 'Shadows Into Light', cursive;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-image: url('img/3. Background/Layers/5. Water/D1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    font-size: 60px;
+    color: white;
 }
 
 canvas {
     background-color: black;
+    border-radius: 10px;
+}
+
+button {
+    font-family: 'Shadows Into Light', cursive;
+    margin-top: 50px;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: none;
+    background-color: #36B9D4;
+    color: white;
+    font-size: 32px;
+    transition: 125ms ease-in-out;
+}
+
+button:hover {
+    scale: 1.1;
+    background-color: #36bad493;
 }

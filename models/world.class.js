@@ -7,27 +7,46 @@ class World {
     ctx;
     KEYBOARD;
     camera_x = 0;
+    statusBar = new StatusBar()
+    throwableObject = [];
     constructor(canvas, KEYBOARD) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas
         this.KEYBOARD = KEYBOARD
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
         this.character.world = this
     }
 
-    checkCollisions() {
+    run() {
+
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    console.log('Collision with Character ', enemy)
-                }
-            });
-        }, 1000);
+
+            this.checkCollisions();
+            this.checkTrhowObject();
+        }, 200);
+    }
+    attackSound = new Audio('audio/attack_sound.mp3');
+    checkTrhowObject() {
+        this.attackSound.pause();
+        if (this.KEYBOARD.SPACE) {
+            let bottle = new ThrowableObject(this.character.x +120, this.character.y +110);
+            this.throwableObject.push(bottle)
+            this.attackSound.play();
+        }
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusBar.setPrecentage(this.character.energy)
+            }
+        });
     }
 
     draw() {
@@ -36,9 +55,14 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.background);
+        // ----------- Space for fix objects------------
+        this.ctx.translate(-this.camera_x, 0); // Back
+        this.addToMap(this.statusBar)
+        this.ctx.translate(this.camera_x, 0); // Forward
 
-        this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObject);
         this.ctx.translate(-this.camera_x, 0);
 
 
