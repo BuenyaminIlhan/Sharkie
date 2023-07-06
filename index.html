@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="notranslate" translate="no">
+
 
 <head>
+    <meta name="google" content="notranslate">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sharkie</title>
@@ -12,6 +14,8 @@
     <script src="models/character.class.js"></script>
     <script src="models/fish.class.js"></script>
     <script src="models/status-bar.class.js"></script>
+    <script src="models/coins-bar.class.js"></script>
+    <script src="models/poison-bar.class.js"></script>
     <script src="models/world.class.js"></script>
     <script src="models/background.class.js"></script>
     <script src="models/green_fish.class.js"></script>
@@ -22,20 +26,59 @@
     <script src="models/keyboard.class.js"></script>
     <script src="models/level.class.js"></script>
     <script src="models/throwable-object.class.js"></script>
+    <script src="models/coins.class.js"></script>
+    <script src="models/poison.class.js"></script>
     <script src="models/endBoss.class.js"></script>
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
 </head>
 
-<body onload="init()">
+<body>
+    <div class="outer-container">
+        <h1>
+            Sharkie
+        </h1>
 
-    <h1>
-        Sharkie
-    </h1>
-    <canvas id="canvas" width="720" , height="480px">
-    </canvas>
-    <Button onclick="fullscreen()">Full Screen</Button>
-    
+        <footer>
+            <div class="how-to">
+                <span>How to Play</span>
+                <img onclick="showInstructions()" class="info-btn" src="img/info.png" alt="">
+            </div>
+            <div class="fullscreen-btn">
+                <img class="btn" onclick="fullscreen()" src="img/6.Botones/Full Screen/Mesa de trabajo 9.png" alt="">
+            </div>
+            <div id="sound-container">
+                <img onclick="soundOff()" class="sound-btn" src="img/sound.png" alt="">
+            </div>
+        </footer>
+
+        <div class="main-div">
+
+            <canvas id="canvas" width="980" , height="560px">
+            </canvas>
+            <div id="start-game" class="start-game">
+                <div id="game-over"></div>
+                <img class="btn" onclick="init()" src="img/6.Botones/Start/3.png" alt="">
+            </div>
+
+            <div class="instructions-container" id="instructions">
+                <img class="instructions-img" onclick="closeInstructions()" src="img/6.Botones/Instructions 2.png"
+                    alt="">
+                <img onclick="closeInstructions()" class="cancel-btn" src="img/cancel.png" alt="">
+            </div>
+        </div>
+        <div class="hud">
+            <div class="arrow-btn">
+                <img id="left-btn" class="left-arrow" src="img/left-arrow.png" alt="">
+                <img id="down-btn" class="down-arrow" src="img/down-arrow.png" alt="">
+                <img id="up-btn" class="up-arrow" src="img/up-arrow.png" alt="">
+                <img id="right-btn" class="right-arrow" src="img/right-arrow.png" alt="">
+            </div>
+            <div class="attack">
+                <img id="bubble-attack" src="img/bubbles.png" alt="">
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

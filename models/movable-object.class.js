@@ -5,21 +5,21 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 1;
     energy = 100;
+    endBossEnergy = 100;
     lastHit = 0;
-    
-
 
     // wird für das springen benötigt
     applyGravity() {
         setInterval(() => {
-                this.x += this.speedY;
+            this.x += this.speedY;
         }, 1000 / 120)
     }
 
-
-
     isColliding(mo) {
-        return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x + mo.width && this.y < mo.y + mo.height;
+        return this.x + this.offsetRight + this.width - this.offsetBottom > mo.x &&
+            this.y + 10 + this.offsetLeft + this.height - 20 - this.offsetTop > mo.y &&
+            this.x + this.offsetRight < mo.x + mo.width &&
+            this.y + this.offsetBottom < mo.y + mo.height;
     }
     hit() {
         this.energy -= 5
@@ -27,6 +27,16 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+        }
+    }
+
+    endBossHit() {
+        this.endBossEnergy -= 20
+        if (this.endBossEnergy < 0) {
+            this.endBossEnergy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+            console.log(this.endBossEnergy)
         }
     }
 
@@ -50,7 +60,11 @@ class MovableObject extends DrawableObject {
         let path = images[i];
         this.img = this.imageCahce[path];
         this.currentImage++;
+        if (images[11] == 'img/1.Sharkie/6.dead/1.Poisoned/12.png' || images[4] == 'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png') {
+            world.endScreen();
+        }
     }
+
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
@@ -63,6 +77,12 @@ class MovableObject extends DrawableObject {
     moveLeft() {
         setInterval(() => {
             this.x -= this.speed
+        }, 1000 / 120) // dies ergibt 120FPS
+    }
+
+    attackEndBoss() {
+        setInterval(() => {
+            this.x -= 0.45
         }, 1000 / 120) // dies ergibt 120FPS
     }
 
