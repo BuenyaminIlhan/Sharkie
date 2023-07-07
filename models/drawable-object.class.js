@@ -27,6 +27,11 @@ class DrawableObject {
                 this.y + this.offsetLeft,
                 this.width - this.offsetBottom,
                 this.height - this.offsetTop);
+            ctx.lineWidth = '3';
+            ctx.rect(this.x + this.offsetRight,
+                this.y + this.offsetLeft,
+                this.width - this.offsetBottom,
+                this.height - this.offsetTop);
             ctx.stroke();
         }
     }

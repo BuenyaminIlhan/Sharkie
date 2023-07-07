@@ -7,6 +7,13 @@ class EndBoss extends MovableObject {
     offsetBottom = 60;
     offsetLeft = 120;
     offsetRight = 20;
+    width = 450;
+    height = 350;
+    y = -10000;
+    offsetTop = 170;
+    offsetBottom = 60;
+    offsetLeft = 120;
+    offsetRight = 20;
 
     IMAGES_SPAWNING = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
@@ -77,8 +84,10 @@ class EndBoss extends MovableObject {
 
     animate() {
         this.attackEndBoss();
+        this.attackEndBoss();
         let i = 0
         setInterval(() => {
+            world.hurt_sound.pause();
             world.hurt_sound.pause();
             if (i < 10) {
                 this.playAnimation(this.IMAGES_SPAWNING)
@@ -87,13 +96,18 @@ class EndBoss extends MovableObject {
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
                 world.hurt_sound.play()
+            } else if (this.endBossEnergy === 0) {
+                this.playAnimation(this.IMAGES_DEAD)
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT)
+                world.hurt_sound.play()
             } else {
+                this.playAnimation(this.IMAGES_ATTACK)
                 this.playAnimation(this.IMAGES_ATTACK)
             }
             i++;
 
             if (level1.enemies[0].hadFirstContact) {
-                i = 0;
                 this.currentImage = 0;
                 this.y = 100;
                 level1.enemies[0].hadFirstContact = false;

@@ -21,6 +21,7 @@ class RedFish extends MovableObject {
         super().loadImage('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
         this.loadImages(this.SWIMMING_RED_FISH)
         this.x = 900 + Math.random() * 900;
+        this.x = 900 + Math.random() * 900;
         this.animate();
         this.animateSwimming(this.SWIMMING_RED_FISH);
         this.speed = 0.15 + Math.random() * 0.8

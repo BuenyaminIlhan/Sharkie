@@ -7,7 +7,10 @@ class MovableObject extends DrawableObject {
     energy = 100;
     endBossEnergy = 100;
     lastHit = 0;
+    
 
+
+    // wird für das springen benötigt
     applyGravity() {
         setInterval(() => {
             this.x += this.speedY;
@@ -25,15 +28,6 @@ class MovableObject extends DrawableObject {
         this.energy -= 5
         if (this.energy < 0) {
             this.energy = 0;
-        } else {
-            this.lastHit = new Date().getTime();
-        }
-    }
-
-    endBossHit() {
-        this.endBossEnergy -= 20
-        if (this.endBossEnergy < 0) {
-            this.endBossEnergy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
@@ -83,6 +77,12 @@ class MovableObject extends DrawableObject {
         setInterval(() => {
             this.x -= 0.45
         }, 1000 / 120)
+    }
+
+    attackEndBoss() {
+        setInterval(() => {
+            this.x -= 0.45
+        }, 1000 / 120) // dies ergibt 120FPS
     }
 
     moveUp() {

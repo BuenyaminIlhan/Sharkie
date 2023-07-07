@@ -90,6 +90,22 @@ class Character extends MovableObject {
         'img/1.Sharkie/2.Long_IDLE/I14.png'
     ];
 
+    SLEEP_IMAGES = [
+        'img/1.Sharkie/2.Long_IDLE/i1.png',
+        'img/1.Sharkie/2.Long_IDLE/I2.png',
+        'img/1.Sharkie/2.Long_IDLE/I3.png',
+        'img/1.Sharkie/2.Long_IDLE/I4.png',
+        'img/1.Sharkie/2.Long_IDLE/I5.png',
+        'img/1.Sharkie/2.Long_IDLE/I6.png',
+        'img/1.Sharkie/2.Long_IDLE/I7.png',
+        'img/1.Sharkie/2.Long_IDLE/I8.png',
+        'img/1.Sharkie/2.Long_IDLE/I9.png',
+        'img/1.Sharkie/2.Long_IDLE/I10.png',
+        'img/1.Sharkie/2.Long_IDLE/I11.png',
+        'img/1.Sharkie/2.Long_IDLE/I12.png',
+        'img/1.Sharkie/2.Long_IDLE/I13.png',
+        'img/1.Sharkie/2.Long_IDLE/I14.png'
+    ]
     currentImage = 0;
     world;
     swimming_sound = new Audio('audio/fish_swimming.mp3');
@@ -98,6 +114,9 @@ class Character extends MovableObject {
         this.loadImages(this.IDLE);
         this.loadImages(this.SWIMMING);
         this.loadImages(this.DEAD);
+        this.loadImages(this.HURT);
+        this.loadImages(this.SLAP_IMAGES);
+        this.loadImages(this.SLEEP_IMAGES);
         this.loadImages(this.HURT);
         this.loadImages(this.SLAP_IMAGES);
         this.loadImages(this.SLEEP_IMAGES);
@@ -161,10 +180,11 @@ class Character extends MovableObject {
     finSlap() {
         setInterval(() => {
             if (this.world.KEYBOARD.D) {
-                this.playAnimation(this.SLAP_IMAGES)
+                this.playAnimation(this.SLAP_IMAGES);
             }
         }, 80);
     }
+    
 
     animate() {
         setInterval(() => {
@@ -192,8 +212,8 @@ class Character extends MovableObject {
                 this.swimming_sound.play();
                 this.lastAction = new Date().getTime();
             }
-            this.world.camera_x = -this.x - 20
-        }, 1000 / 120)
+            this.world.camera_x = -this.x + 100
+        }, 1000 / 120)      //entspricht 120FPS
 
         let interval = setInterval(() => {
 

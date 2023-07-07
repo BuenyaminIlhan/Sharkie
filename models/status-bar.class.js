@@ -7,11 +7,15 @@ class StatusBar extends DrawableObject {
         'img/4. Marcadores/green/Life/40_  copia 3.png',
         'img/4. Marcadores/green/Life/60_  copia 3.png',
         'img/4. Marcadores/green/Life/80_  copia 3.png',
+        'img/4. Marcadores/green/Life/100_  copia 2.png',
+        'img/4. Marcadores/green/Life/60_  copia 3.png',
+        'img/4. Marcadores/green/Life/80_  copia 3.png',
         'img/4. Marcadores/green/Life/100_  copia 2.png'
     ];
 
     constructor() {
         super();
+       this.loadImages(this.LIFE)
        this.loadImages(this.LIFE)
         this.x = 0;
         this.y = -15;

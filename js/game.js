@@ -6,6 +6,8 @@ let backgroundSound = new Audio('audio/Background_sound.mp3');
 function init() {
     initLevel();
     backgroundSound.play()
+    initLevel();
+    backgroundSound.play()
     canvas = document.getElementById('canvas');
     world = new World(canvas, KEYBOARD);
     document.getElementById('start-game').style.display = 'none'
@@ -50,6 +52,12 @@ function closeInstructions() {
     document.getElementById('instructions').classList.add('d-none')
 }
 
+function showInstructions() {
+    document.getElementById('instructions').classList.remove('d-none')
+}
+function closeInstructions() {
+    document.getElementById('instructions').classList.add('d-none')
+}
 function fullscreen() {
     this.canvas.requestFullscreen()
 }
