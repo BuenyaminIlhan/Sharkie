@@ -4,24 +4,12 @@ class World {
     enemies = level1.enemies;
     character = new Character();
     endboss = new EndBoss();
-    endboss = new EndBoss();
     background = level1.background;
     coins = level1.coins;
     canvas;
     ctx;
     KEYBOARD;
     camera_x = 0;
-    collectedCoins = 0;
-    collectedPoison = 0;
-    statusBar = new StatusBar();
-    coinBar = new CoinBar();
-    poisonBar = new PoisonBar();
-    coins = [];
-    poisons = [];
-    bubble;
-    coin_sound;
-    hurtSound;
-    audioContext;
     collectedCoins = 0;
     collectedPoison = 0;
     statusBar = new StatusBar();
@@ -53,12 +41,13 @@ class World {
     }
 
     coinsLoop() {
-        for (let i = 0; i < 32; i++) {
+        for (let i = 0; i < 22; i++) {
             this.coins.push(new Coins());
         }
     }
+
     poisonsLoop() {
-        for (let i = 0; i < 32; i++) {
+        for (let i = 0; i < 22; i++) {
             this.poisons.push(new Poison());
         }
     }
@@ -76,7 +65,6 @@ class World {
             this.checkCollisionsBubblesWithEnemies();
         }, 100);
     }
-
 
     checkTrhowObject() {
         this.attackSound.pause();
@@ -98,91 +86,14 @@ class World {
         });
     }
 
-    checkCollisionsCoins() {
-        this.coins.forEach((coin, index) => {
-            if (this.character.isColliding(coin)) {
-                this.collectedCoins++;
-                this.coins.splice(index, 1);
-                this.playCoinSound();
-            }
-        });
-    }
-
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if ((this.character.isColliding(enemy) || this.character.isColliding(this.endboss))) {
                 this.character.hit();
                 this.statusBar.setPrecentage(this.character.energy);
                 this.playHurtSound();
-                this.statusBar.setPrecentage(this.character.energy);
-                this.playHurtSound();
             }
         });
-    }
-
-    playCoinSound() {
-        const coinSoundSource = this.audioContext.createBufferSource();
-        fetch(this.coin_sound)
-            .then((response) => response.arrayBuffer())
-            .then((buffer) => this.audioContext.decodeAudioData(buffer))
-            .then((audioBuffer) => {
-                coinSoundSource.buffer = audioBuffer;
-                coinSoundSource.connect(this.audioContext.destination);
-                coinSoundSource.start();
-            });
-    }
-
-    playHurtSound() {
-        const hurtSoundSource = this.audioContext.createBufferSource();
-        fetch(this.hurtSound)
-            .then((response) => response.arrayBuffer())
-            .then((buffer) => this.audioContext.decodeAudioData(buffer))
-            .then((audioBuffer) => {
-                hurtSoundSource.buffer = audioBuffer;
-                hurtSoundSource.connect(this.audioContext.destination);
-                hurtSoundSource.start();
-            });
-    }
-
-    checkCollisionsBubblesWithEnemies() {
-        this.enemies.forEach((enemy, enemyIndex) => {
-            this.throwableObject.forEach((bubble, bubbleIndex) => {
-                if (enemy.isColliding(bubble)) {
-                    this.enemies.splice(enemyIndex, 1);
-                    this.throwableObject.splice(bubbleIndex, 1);
-                }
-                if (this.endboss.isColliding(bubble)) {
-                    this.throwableObject.splice(bubbleIndex, 1);
-                    this.endboss.endBossHit();
-                }
-            });
-        });
-    }
-
-    checkCollisionsPoison() {
-        this.poisons.forEach((poison, index) => {
-            if (this.character.isColliding(poison)) {
-                this.collectedPoison++
-                this.poisons.splice(index, 1)
-            }
-        })
-    }
-
-    endScreen() {
-        backgroundSound.pause()
-        this.gameOverSound.pause();
-        setTimeout(() => {
-            let endScreen = document.getElementById('start-game');
-            let gameOver = document.getElementById('game-over');
-            endScreen.style.display = 'flex';
-            endScreen.style.background = '#000000b0';
-            gameOver.style.fontSize = '130px'
-            gameOver.innerHTML = '<img src="img/6.Botones/Tittles/Game Over/Recurso 12.png">';
-            gameOver.style.color = 'white'
-            this.gameOverSound.play();
-            this.gameOverSound.volume =0.5
-            for (let i = 1; i < 9999; i++) window.clearInterval(i);
-        }, 1000);
     }
 
     playCoinSound() {
@@ -270,7 +181,6 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
-        this.addToMap(this.endboss);
         this.addToMap(this.endboss);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObject);

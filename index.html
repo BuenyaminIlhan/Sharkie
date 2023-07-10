@@ -46,26 +46,28 @@
                 <img onclick="showInstructions()" class="info-btn" src="img/info.png" alt="">
             </div>
             <div class="fullscreen-btn">
-                <img class="btn" onclick="fullscreen()" src="img/6.Botones/Full Screen/Mesa de trabajo 9.png" alt="">
-            </div>
-            <div id="sound-container">
-                <img onclick="soundOff()" class="sound-btn" src="img/sound.png" alt="">
+                <img class="btn" onclick="fullscreen('main-div')" src="img/6.Botones/Full Screen/Mesa de trabajo 9.png"
+                    alt="">
             </div>
         </footer>
 
-        <div class="main-div">
+        <div id="main-div" class="main-div">
             <canvas id="canvas" width="980" , height="560px">
             </canvas>
             <div id="start-game" class="start-game">
                 <div id="game-over"></div>
                 <img class="btn" onclick="init()" src="img/6.Botones/Start/3.png" alt="">
             </div>
+            <div id="sound-container">
+                <img id="sound-btn" onclick="soundOff()" class="sound-btn" src="img/sound.png" alt="">
+                <img onclick="showInstructions()" src="img/info.png" alt="">
+            </div>
             <div class="instructions-container" id="instructions">
                 <img class="instructions-img" onclick="closeInstructions()" src="img/6.Botones/Instructions 2.png"
                     alt="">
                 <img onclick="closeInstructions()" class="cancel-btn" src="img/cancel.png" alt="">
             </div>
-            <div class="hud">
+            <div id="hud" class="hud">
                 <div class="arrow-btn">
                     <img id="left-btn" class="left-arrow" src="img/left-arrow.png" alt="">
                     <img id="down-btn" class="down-arrow" src="img/down-arrow.png" alt="">
@@ -76,6 +78,7 @@
                     <img id="bubble-attack" src="img/bubbles.png" alt="">
                 </div>
             </div>
+
         </div>
     </div>
 </body>

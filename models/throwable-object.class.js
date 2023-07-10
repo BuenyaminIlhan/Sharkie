@@ -6,7 +6,7 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.width = 50;
         this.height = 50
-        this.loadImage('img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
+        this.loadImage('img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png');
         this.throw();
     }
 

@@ -184,7 +184,6 @@ class Character extends MovableObject {
             }
         }, 80);
     }
-    
 
     animate() {
         setInterval(() => {
@@ -194,23 +193,19 @@ class Character extends MovableObject {
             this.swimming_sound.pause();
             if (this.world.KEYBOARD.RIGHT && this.x < this.world.level.level_end_X) {
                 this.moveRight();
-                this.swimming_sound.play();
-                this.lastAction = new Date().getTime();
+                this.lastActionSound();
             }
             if (this.world.KEYBOARD.LEFT && this.x > 0) {
                 this.moveBack();
-                this.swimming_sound.play();
-                this.lastAction = new Date().getTime();
+                this.lastActionSound();
             }
             if (this.world.KEYBOARD.UP) {
                 this.moveFishUP();
-                this.swimming_sound.play();
-                this.lastAction = new Date().getTime();
+                this.lastActionSound();
             }
             if (this.world.KEYBOARD.DOWN) {
                 this.moveDown();
-                this.swimming_sound.play();
-                this.lastAction = new Date().getTime();
+                this.lastActionSound();
             }
             this.world.camera_x = -this.x + 100
         }, 1000 / 120)      //entspricht 120FPS
@@ -233,5 +228,10 @@ class Character extends MovableObject {
                 this.playAnimation(this.IDLE)
             }
         }, 80);
+    }
+
+    lastActionSound() {
+        this.swimming_sound.play();
+        this.lastAction = new Date().getTime();
     }
 }

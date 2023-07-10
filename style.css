@@ -37,11 +37,6 @@ img {
     cursor: pointer;
 }
 
-.main-div {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
 
 .start-game {
     position: absolute;
@@ -62,6 +57,8 @@ img {
     display: flex;
     flex-direction: column;
     position: relative;
+    max-height: 560px;
+    max-width: 980px;
 }
 
 .start-game {
@@ -92,6 +89,7 @@ img {
     transition: 115ms ease-in-out;
     z-index: 2;
     margin-bottom: 10px;
+    margin-right: 8px;
 }
 
 .btn:hover,
@@ -138,7 +136,6 @@ img {
 }
 
 .instructions-img {
-    width: 555px;
     height: 270px;
 }
 
@@ -154,6 +151,24 @@ img {
     display: none;
 }
 
+#sound-container img {
+    width: 40px;
+    height: 40px;
+    z-index: 2;
+    transition: 115ms ease-in-out;
+}
+
+#sound-container img:hover {
+    scale: 1.1;
+}
+
+#sound-container {
+    position: absolute;
+    right: 0;
+    bottom: 130px;
+    display: flex;
+    flex-direction: column;
+}
 
 footer {
     display: flex;
@@ -164,8 +179,13 @@ footer {
 
 #bubble-attack,
 .arrow-btn img {
-    width: 30px;
+    width: 40px;
     cursor: pointer;
+}
+
+.attack {
+    position: absolute;
+    right: 0;
 }
 
 .hud {
@@ -173,11 +193,10 @@ footer {
     bottom: 55px;
     right: 0;
     left: 0;
-    display: flex;
+    display: none;
     justify-content: space-between;
     width: 100%;
     margin-top: 20px;
-    max-width: 980px;
 }
 
 .arrow-btn {
@@ -186,7 +205,7 @@ footer {
 
 .down-arrow {
     position: absolute;
-    top: 58px;
+    top: 13px;
     right: 0;
     left: 27px;
     bottom: 0;
@@ -194,7 +213,7 @@ footer {
 
 .left-arrow {
     position: absolute;
-    top: 32px;
+    top: -11px;
     right: 0;
     left: 0px;
     bottom: 0;
@@ -202,7 +221,7 @@ footer {
 
 .right-arrow {
     position: absolute;
-    top: 32px;
+    top: -9px;
     bottom: 0;
     right: 0;
     left: 54px;
@@ -210,14 +229,35 @@ footer {
 
 .up-arrow {
     position: absolute;
-    top: 0;
+    top: -38px;
     bottom: 0px;
     right: 0;
     left: 27px;
 }
+
 .outer-container {
     position: relative;
     max-width: 980px;
     width: 100%;
     height: 100vh;
+}
+
+#sound-btn {
+    opacity: 0;
+}
+
+@media (max-width:850px) {
+    .hud {
+        display: flex;
+    }
+
+    footer,
+    h1 {
+        display: none;
+    }
+
+    .main-div {
+        height: 100vh;
+        width: 100%;
+    }
 }

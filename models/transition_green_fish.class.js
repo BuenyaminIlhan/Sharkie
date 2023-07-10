@@ -20,8 +20,7 @@ class TransitonGreenFish extends MovableObject {
     constructor() {
         super().loadImage('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
         this.loadImages(this.SWIMMING_TRANSITION_GREEN_FISH)
-        this.x = 800 + Math.random() * 1300;
-        this.x = 800 + Math.random() * 1300;
+        this.x = 1000 + Math.random() * 1300;
         this.animate();
         this.animateSwimming(this.SWIMMING_TRANSITION_GREEN_FISH);
         this.speed = 0.15 + Math.random() * 0.8

@@ -5,10 +5,17 @@ function initLevel() {
         new GreenFish(),
         new GreenFish(),
         new GreenFish(),
-        new GreenFish(),
+        new RedFish(),
+        new RedFish(),
         new RedFish(),
         new TransitonGreenFish(),
+        new TransitonGreenFish(),
+        new TransitonGreenFish(),
         new BubbleFish(),
+        new BubbleFish(),
+        new BubbleFish(),
+        new JellyFishLila(),
+        new JellyFishLila(),
         new JellyFishLila()
     ],
         [

@@ -5,13 +5,14 @@ let backgroundSound = new Audio('audio/Background_sound.mp3');
 
 function init() {
     initLevel();
-    backgroundSound.play()
+    backgroundSound.play();
     initLevel();
     backgroundSound.play()
     canvas = document.getElementById('canvas');
     world = new World(canvas, KEYBOARD);
     document.getElementById('start-game').style.display = 'none'
     closeInstructions()
+    document.getElementById('sound-btn').style.opacity = '1';
     let soundContainer = document.getElementById('sound-container');
     soundContainer.innerHTML = '';
     soundContainer.innerHTML = '<img onclick="soundOff()" class="sound-btn" src="img/sound.png" alt="">';
@@ -58,8 +59,37 @@ function showInstructions() {
 function closeInstructions() {
     document.getElementById('instructions').classList.add('d-none')
 }
-function fullscreen() {
-    this.canvas.requestFullscreen()
+
+function fullscreen(elementId) {
+    let elem = document.getElementById(elementId);
+    let hud = document.getElementById('hud');
+
+    if (!document.fullscreenElement && !document.mozFullScreenElement &&
+        !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+        elem.style.width = '100vw'
+        elem.style.height = '100vh'
+        hud.style.display = 'flex'
+
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
 }
 
 window.addEventListener('keydown', (e) => {
